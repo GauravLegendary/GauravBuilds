@@ -1,0 +1,1124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GauravBuilds - Minecraft Services</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Silkscreen&display=swap');
+
+        :root {
+            --primary-color: #00bfff;
+            --secondary-color: #1e90ff;
+            --accent-color: #20c997; 
+            --dark-bg: #020f1f;  
+            --darker-bg: #010a14;
+            --text-light: #e0f7fa;
+            --text-muted: #a3cde3;  
+            --card-bg: rgba(255, 255, 255, 0.02);
+            --border-color: rgba(30, 144, 255, 0.3);
+            --neon-glow: 0 0 20px var(--primary-color);
+        }
+
+        body {
+            font-family: 'Share Tech Mono', monospace;
+            background: var(--dark-bg);
+            color: var(--text-light);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+         /* Animated Water-Themed Background */
+         .particles-bg {
+             position: fixed;
+             top: 0;
+             left: 0;
+             width: 100%;
+             height: 100%;
+             background: linear-gradient(135deg, #020f1f 0%, #012b4a 50%, #020f1f 100%);
+             z-index: -2;
+        }
+
+         .particles-bg::before {
+             content: '';
+             position: absolute;
+             top: 0;
+             left: 0;
+             width: 100%;
+             height: 100%;
+             background-image: 
+                 radial-gradient(circle at 20% 80%, rgba(0, 191, 255, 0.08) 0%, transparent 50%),
+                 radial-gradient(circle at 80% 20%, rgba(30, 144, 255, 0.08) 0%, transparent 50%),
+                 radial-gradient(circle at 40% 40%, rgba(32, 201, 151, 0.08) 0%, transparent 50%);
+             animation: float 25s ease-in-out infinite;
+             opacity: 0.6;
+             mix-blend-mode: screen;
+        }
+
+         @keyframes float {
+             0%, 100% { transform: translateY(0px) rotate(0deg); }
+             50% { transform: translateY(-30px) rotate(180deg); }
+        }
+
+        /* Navigation */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1rem 2rem;
+            background: rgba(10, 10, 10, 0.9);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-color);
+            z-index: 1000;
+        }
+
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        nav a:hover,
+        nav a.active {
+            color: var(--primary-color);
+            text-shadow: var(--neon-glow);
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        /* Neon Text Effect */
+        .neon-text-primary {
+            color: var(--primary-color);
+            text-shadow: 
+                0 0 3px var(--primary-color),
+                0 0 6px var(--primary-color);
+            animation: flicker 4s infinite alternate;
+        }
+
+        @keyframes flicker {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.9; }
+        }
+
+        /* Sections */
+        .section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            position: relative;
+        }
+
+        .container {
+            max-width: 1200px;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        /* Hero Section */
+        #hero {
+            text-align: center;
+        }
+
+        #hero h1 {
+            font-family: 'Silkscreen', monospace;
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .tagline {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            margin-bottom: 3rem;
+        }
+
+        #scroll-down-arrow {
+            display: inline-block;
+            color: var(--primary-color);
+            font-size: 2rem;
+            animation: bounce 2s infinite;
+            text-decoration: none;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+
+        /* Section Headers */
+        .section-title {
+            font-family: 'Silkscreen', monospace;
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            border-radius: 2px;
+        }
+
+        /* Services Grid */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .service-card {
+            background: linear-gradient(135deg, rgba(255, 107, 53, 0.1), rgba(247, 147, 30, 0.05));
+            border: none;
+            border-left: 4px solid var(--primary-color);
+            border-radius: 0;
+            padding: 2rem;
+            text-align: left;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(5px);
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 107, 53, 0.15), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .service-card:hover::before {
+            left: 100%;
+        }
+
+        .service-card:hover {
+            transform: translateX(10px);
+            border-left-width: 6px;
+            background: linear-gradient(135deg, rgba(255, 107, 53, 0.15), rgba(247, 147, 30, 0.08));
+        }
+
+        .service-icon {
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .service-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.8rem;
+            font-family: 'Silkscreen', monospace;
+        }
+
+        .service-card p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        /* About Section */
+        .about-content-wrapper-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .about-text-column p {
+            margin-bottom: 1.5rem;
+            color: var(--text-muted);
+            line-height: 1.8;
+        }
+
+        .about-text-column strong {
+            color: var(--primary-color);
+        }
+
+        .stats-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+        }
+
+        .stat-box {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .stat-box:hover {
+            border-color: var(--primary-color);
+            box-shadow: var(--neon-glow);
+        }
+
+        .stat-box h4 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-box p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* Portfolio Grid */
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .project-card {
+            background: transparent;
+            border: none;
+            border-radius: 0;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            position: relative;
+        }
+
+        .project-card:hover {
+            transform: scale(1.02);
+        }
+
+        .project-image-wrapper {
+            height: 250px;
+            background: linear-gradient(135deg, rgba(10, 10, 10, 0.9), rgba(255, 107, 53, 0.1));
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(255, 107, 53, 0.3);
+            cursor: pointer;
+        }
+
+        .project-image-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .project-card:hover .project-image-wrapper img {
+            transform: scale(1.05);
+        }
+
+        .project-filename {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: rgba(0, 0, 0, 0.8);
+            color: var(--primary-color);
+            padding: 0.5rem 1rem;
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 0.8rem;
+            border: 1px solid rgba(255, 107, 53, 0.5);
+        }
+
+        .project-image-wrapper::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: repeating-linear-gradient(
+                90deg,
+                transparent,
+                transparent 2px,
+                rgba(255, 107, 53, 0.1) 2px,
+                rgba(255, 107, 53, 0.1) 4px
+            );
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .project-card:hover .project-image-wrapper::before {
+            opacity: 1;
+        }
+
+        .project-image-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            font-size: 2rem;
+            color: var(--secondary-color);
+        }
+
+        .project-image-overlay::before {
+            content: '⚡';
+            font-size: 3rem;
+        }
+
+        .project-card:hover .project-image-overlay {
+            opacity: 1;
+        }
+
+        .project-content {
+            padding: 2rem 0;
+            border-left: 3px solid var(--primary-color);
+            padding-left: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .project-content h3 {
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+            font-family: 'Silkscreen', monospace;
+        }
+
+        .tags-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .tag {
+            background: transparent;
+            color: var(--text-muted);
+            padding: 0.4rem 0;
+            border-radius: 0;
+            font-size: 0.85rem;
+            border: none;
+            border-bottom: 1px solid rgba(255, 107, 53, 0.4);
+            font-family: 'Share Tech Mono', monospace;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .tag:hover {
+            color: var(--primary-color);
+            border-bottom-color: var(--primary-color);
+        }
+
+        /* Gallery Button */
+        .portfolio-footer {
+            text-align: center;
+            margin-top: 4rem;
+            width: 100%;
+        }
+
+        .btn-gallery {
+            background: linear-gradient(45deg, rgba(255, 107, 53, 0.2), rgba(247, 147, 30, 0.2));
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+            padding: 1rem 2.5rem;
+            font-size: 1.1rem;
+            margin-top: 3rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            text-decoration: none;
+            display: inline-block;
+            border-radius: 25px;
+            font-family: 'Share Tech Mono', monospace;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .btn-gallery::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 107, 53, 0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .btn-gallery:hover::before {
+            left: 100%;
+        }
+
+        .btn-gallery:hover {
+            background: linear-gradient(45deg, var(--primary-color), var(--accent-color));
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(255, 107, 53, 0.3);
+        }
+
+        /* FAQ Section */
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            margin-bottom: 1rem;
+            overflow: hidden;
+        }
+
+        .faq-question {
+            padding: 1.5rem;
+            cursor: pointer;
+            color: var(--primary-color);
+            font-weight: bold;
+            list-style: none;
+            transition: all 0.3s ease;
+            position: relative;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .faq-question::after {
+            content: '+';
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            transition: transform 0.3s ease;
+        }
+
+        .faq-item[open] .faq-question::after {
+            transform: rotate(45deg);
+        }
+
+        .faq-question:hover {
+            background: rgba(255, 107, 53, 0.1);
+        }
+
+        .faq-answer {
+            padding: 1.5rem;
+            color: var(--text-muted);
+            border-top: 1px solid var(--border-color);
+            line-height: 1.7;
+        }
+
+        .faq-answer p {
+            margin: 0;
+        }
+
+        /* Contact Section */
+        .contact-buttons-container {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin-bottom: 3rem;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem 2rem;
+            background: transparent;
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .btn:hover {
+            background: var(--primary-color);
+            color: white;
+            box-shadow: var(--neon-glow);
+            transform: translateY(-3px);
+        }
+
+        .contact-btn {
+            min-width: 200px;
+            justify-content: center;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 2rem;
+            color: var(--text-muted);
+            border-top: 1px solid var(--border-color);
+        }
+
+        /* Lightbox Modal */
+        .lightbox-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .lightbox-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .lightbox-content {
+            max-width: 90%;
+            max-height: 90%;
+            background: var(--dark-bg);
+            border: 2px solid var(--primary-color);
+            border-radius: 10px;
+            padding: 2rem;
+            position: relative;
+            text-align: center;
+            box-shadow: 0 0 30px rgba(255, 107, 53, 0.5);
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            font-size: 2rem;
+            color: var(--primary-color);
+            cursor: pointer;
+            background: none;
+            border: none;
+            transition: color 0.3s ease;
+        }
+
+        .lightbox-close:hover {
+            color: var(--secondary-color);
+        }
+
+        .lightbox-image {
+            max-width: 100%;
+            max-height: 60vh;
+            object-fit: contain;
+            border: 1px solid rgba(255, 107, 53, 0.3);
+            margin-bottom: 1.5rem;
+        }
+
+        .lightbox-title {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            font-family: 'Silkscreen', monospace;
+        }
+
+        .lightbox-description {
+            color: var(--text-muted);
+            line-height: 1.6;
+            margin-top: 1rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .lightbox-tags {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Animations */
+        .fade-in {
+            opacity: 0;
+            animation: fadeIn 1s ease forwards;
+        }
+
+        .slide-in-up {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: slideInUp 0.8s ease forwards;
+        }
+
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
+
+        @keyframes slideInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            nav ul {
+                flex-wrap: wrap;
+                gap: 1rem;
+            }
+
+            #hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .about-content-wrapper-grid {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .services-grid {
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            }
+
+            .contact-buttons-container {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .stats-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .section {
+                padding: 1rem;
+            }
+
+            #hero h1 {
+                font-size: 2rem;
+            }
+
+            .stats-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="particles-bg"></div>
+
+    <header>
+        <nav>
+            <ul>
+                <li><a href="#hero" class="active">Home</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#portfolio">Gallery</a></li>
+                <li><a href="#faq">FAQ</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="hero" class="section">
+            <div class="container">
+                <h1 class="neon-text-primary fade-in">GauravBuilds</h1>
+                <p class="tagline fade-in">Premium Minecraft Solutions, Built for Players</p>
+                <a href="#services" id="scroll-down-arrow">▼</a>
+            </div>
+        </section>
+
+        <section id="services" class="section">
+            <div class="container">
+                <h2 class="section-title neon-text-primary">MY SERVICES</h2>
+                <div class="services-grid">
+                    <div class="service-card slide-in-up">
+                        <div class="service-icon">🖥️</div>
+                        <h3 class="neon-text-primary">Server Development</h3>
+                        <p>Complete server architecture, optimization, and custom configurations for peak performance.</p>
+                    </div>
+                    <div class="service-card slide-in-up">
+                        <div class="service-icon">⚙️</div>
+                        <h3 class="neon-text-primary">Custom Config</h3>
+                        <p>High-Quality plugin configurations and server settings optimized for your specific needs.</p>
+                    </div>
+                    <div class="service-card slide-in-up">
+                        <div class="service-icon">📦</div>
+                        <h3 class="neon-text-primary">Resource Packs</h3>
+                        <p>Custom textures, models, and visual enhancements for unique server experiences.</p>
+                    </div>
+                    <div class="service-card slide-in-up">
+                        <div class="service-icon">💬</div>
+                        <h3 class="neon-text-primary">Discord Setup</h3>
+                        <p>Complete community platform with bots, moderation, and server integration.</p>
+                    </div>
+                    <div class="service-card slide-in-up">
+                        <div class="service-icon">👍</div>
+                        <h3 class="neon-text-primary">Voting Setup</h3>
+                        <p>Reward systems and voting platform integration to boost server visibility.</p>
+                    </div>
+                    <div class="service-card slide-in-up">
+                        <div class="service-icon">🔧</div>
+                        <h3 class="neon-text-primary">Debugging</h3>
+                        <p>Expert troubleshooting and optimization for existing server configurations.</p>
+                    </div>
+                    <div class="service-card slide-in-up">
+                        <div class="service-icon">💻</div>
+                        <h3 class="neon-text-primary">Java Plugins</h3>
+                        <p>Custom plugin development from simple utilities to complex game mechanics.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="section">
+            <div class="container">
+                <h2 class="section-title neon-text-primary">ABOUT ME</h2>
+                <div class="about-content-wrapper-grid">
+                    <div class="about-text-column">
+                        <p>Hi! I'm <strong>Gaurav</strong>, a passionate full-time Minecraft freelancer from India, with over 4 years of experience delivering high-quality solutions in the Minecraft space. I offer a range of services including <strong>Server Setups</strong>, <strong>Plugin Configurations</strong>, <strong>Java Development</strong>, <strong>Tebex Store Setup</strong>, <strong>Discord Server Setup</strong>, and more.</p>
+                        <p>Over the years, I’ve worked with clients across the globe to build everything from fast-paced minigame servers to long-term survival communities. I take pride in writing clean, reliable code and ensuring each project meets the highest standards of performance and creativity.</p>
+                        <p>If you’re looking for a dedicated developer to help you bring your Minecraft vision to life, feel free to contact me via Discord or BuiltByBit. I’m always open to new opportunities and collaborations!</p>
+                    </div>
+                    <div class="about-visual-column">
+                        <div class="stats-container">
+                            <div class="stat-box">
+                                <h4 class="neon-text-primary">4+</h4>
+                                <p>Years Exp</p>
+                            </div>
+                            <div class="stat-box">
+                                <h4 class="neon-text-primary">247+</h4>  
+                                <p>Clients Served</p>
+                            </div>
+                            <div class="stat-box">
+                                <h4 class="neon-text-primary">102+</h4>
+                                <p>Projects Done</p>
+                            </div>
+                            <div class="stat-box">
+                                <h4 class="neon-text-primary">7+</h4>
+                                <p>Major Networks</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="portfolio" class="section">
+            <div class="container">
+
+                <h2 class="section-title neon-text-primary">GALLERY</h2>
+                <div class="portfolio-grid">
+                    <div class="project-card slide-in-up">
+                        <div class="project-image-wrapper" onclick="openLightbox('images/project1.png', 'Custom Armor Model', 'A client requested help implementing custom 3D models on their server. I successfully integrated the models, ensuring they worked correctly in-game with proper texture mapping and collision detection.', ['3D-Models', 'Oraxen', 'ItemsAdder', 'Client-Work'])">
+                            <img src="images/project1.png" alt="Custom Armor Model project">
+                            <div class="project-filename">Models</div>
+                            <div class="project-image-overlay"></div>
+                        </div>
+                        <div class="project-content">
+                            <h3 class="neon-text-primary">Custom Armor Model</h3>
+                            <div class="tags-container">
+                                <span class="tag">3D-Models</span>
+                                <span class="tag">Oraxen</span>
+                                <span class="tag">ItemsAdder</span>
+                                <span class="tag">Client-Work</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-card slide-in-up">
+                        <div class="project-image-wrapper" onclick="openLightbox('images/project2.png', 'OpenRP-Fork Plugin', 'Tasked with enhancing a fork of the OpenRP plugin, I added several features: muffled chat effect for obscured players, quick channel switching, action/dialogue systems, and colored text for actions. Completed successfully and on schedule.', ['Java-Dev', 'Custom-Plugin', 'Fork-Project', 'Advanced'])">
+                            <img src="images/project2.png" alt="OpenRP-Fork Custom Plugin Development">
+                            <div class="project-filename">Plugin</div>
+                            <div class="project-image-overlay"></div>
+                        </div>
+                        <div class="project-content">
+                            <h3 class="neon-text-primary">OpenRP-Fork Plugin</h3>
+                            <div class="tags-container">
+                                <span class="tag">Java-Dev</span>
+                                <span class="tag">Custom-Plugin</span>
+                                <span class="tag">Fork-Project</span>
+                                <span class="tag">Advanced</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-card slide-in-up">
+                        <div class="project-image-wrapper" onclick="openLightbox('images/project3.png', 'NPC & Holograms', 'This project involved setting up custom NPCs and holograms for a long-term client, demonstrating attention to detail in design and configuration. Features interactive NPCs with custom behaviors and animated holographic displays.', ['NPC-Config', 'Holograms', 'Long-Term', 'Interactive'])">
+                            <img src="images/project3.png" alt="NPC & Holograms">
+                            <div class="project-filename">Config</div>
+                            <div class="project-image-overlay"></div>
+                        </div>
+                        <div class="project-content">
+                            <h3 class="neon-text-primary">NPC & Holograms</h3>
+                            <div class="tags-container">
+                                <span class="tag">NPC-Config</span>
+                                <span class="tag">Holograms</span>
+                                <span class="tag">Long-Term</span>
+                                <span class="tag">Interactive</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-card slide-in-up">
+                        <div class="project-image-wrapper" onclick="openLightbox('images/project5.png', 'Tebex Setup', 'Implemented and configured a Tebex webstore using a custom template for a client. The setup was completed efficiently and functioned flawlessly with automated rank delivery and payment processing integration.', ['Webstore', 'Tebex-Config', 'Custom-Theme', 'Integration'])">
+                            <img src="images/project5.png" alt="Tebex Setup">
+                            <div class="project-filename">Web</div>
+                            <div class="project-image-overlay"></div>
+                        </div>
+                        <div class="project-content">
+                            <h3 class="neon-text-primary">Tebex Setup</h3>
+                            <div class="tags-container">
+                                <span class="tag">Webstore</span>
+                                <span class="tag">Tebex-Config</span>
+                                <span class="tag">Custom-Theme</span>
+                                <span class="tag">Integration</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-card slide-in-up">
+                        <div class="project-image-wrapper" onclick="openLightbox('images/project6.png', 'Full Hub Setup', 'Developed a complete, functional hub server including parkour systems, leveling mechanics, custom resource packs, NPCs, and holograms. Ensured seamless connection via proxy with optimized performance for high player counts.', ['Hub-Design', 'Parkour', 'Custom-Packs', 'Complete'])">
+                            <img src="images/project6.png" alt="Full Hub setup">
+                            <div class="project-filename">Setup</div>
+                            <div class="project-image-overlay"></div>
+                        </div>
+                        <div class="project-content">
+                            <h3 class="neon-text-primary">Full Hub Setup</h3>
+                            <div class="tags-container">
+                                <span class="tag">Hub-Design</span>
+                                <span class="tag">Parkour</span>
+                                <span class="tag">Custom-Packs</span>
+                                <span class="tag">Complete</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-card slide-in-up">
+                        <div class="project-image-wrapper" onclick="openLightbox('images/project7.png', 'Long Term Developer', 'Served as a long-term developer for large networks like Relheim Network, MineWild Network, and AppleMC, handling ongoing development, configuration, and maintenance tasks requiring high reliability and skill for enterprise-scale operations.', ['Developer-Role', 'Major-Networks', 'High-Scale', 'Enterprise'])">
+                            <img src="images/project7.png" alt="Long Term Developer">
+                            <div class="project-filename">Longterm</div>
+                            <div class="project-image-overlay"></div>
+                        </div>
+                        <div class="project-content">
+                            <h3 class="neon-text-primary">Long Term Developer</h3>
+                            <div class="tags-container">
+                                <span class="tag">Developer-Role</span>
+                                <span class="tag">Major-Networks</span>
+                                <span class="tag">High-Scale</span>
+                                <span class="tag">Enterprise</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="portfolio-footer">
+                    <a class='btn-gallery' href='/gallery'>
+                        🎨 Explore Full Portfolio
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section id="faq" class="section">
+            <div class="container">
+                <h2 class="section-title neon-text-primary">FAQ</h2>
+                <div class="faq-container">
+                    <details class="faq-item">
+                        <summary class="faq-question">What types of services do you offer?</summary>
+                        <div class="faq-answer">
+                            <p>Server Setups, Plugin Configurations, Tebex or Webstores Setups, Discord Server, Resource Pack (Oraxen, ItemsAdder or Vanilla Resourcepack), Models Setups, Voting System, Custom Plugin and many more, just inquire.</p>
+                        </div>
+                    </details>
+                    <details class="faq-item">
+                        <summary class="faq-question">What are your prices?</summary>
+                        <div class="faq-answer">
+                            <p>My prices are negotiable and depend on the project's scope and complexity. Please contact me to discuss your requirements and get a personalized quote.</p>
+                        </div>
+                    </details>
+                    <details class="faq-item">
+                        <summary class="faq-question">How long does a typical project take?</summary>
+                        <div class="faq-answer">
+                            <p>Project times really depend on what you need. Simple tasks can be done pretty quickly, while bigger setups or custom development might take a bit longer. I always aim to deliver on time and keep things moving.</p>
+                        </div>
+                    </details>
+                    <details class="faq-item">
+                        <summary class="faq-question">Can you develop custom Java plugins?</summary>
+                        <div class="faq-answer">
+                            <p>Yes, with 2 years of experience developing custom Java plugins for Minecraft servers. Whether it's a simple feature or a more complex system, I make sure the plugin works smoothly and fits your server's needs.</p>
+                        </div>
+                    </details>
+                    <details class="faq-item">
+                        <summary class="faq-question">Do you configure ItemsAdder or Oraxen?</summary>
+                        <div class="faq-answer">
+                            <p>Yes! I offer setup and configuration services for both ItemsAdder and Oraxen to add custom items, textures, models, and mechanics to your server.</p>
+                        </div>
+                    </details>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="section">
+            <div class="container">
+                <h2 class="section-title neon-text-primary">CONTACT ME</h2>
+                <div class="contact-buttons-container">
+                    <a href="http://discordapp.com/users/630038569490055169" target="_blank" class="btn contact-btn">
+                        💬 Private Message
+                    </a>
+                    <a href="https://discord.gg/ym4bZDsnC3" target="_blank" class="btn contact-btn">
+                        👥 Discord Server
+                    </a>
+                    <a href="https://builtbybit.com/members/Gaurav.189403/" target="_blank" class="btn contact-btn">
+                        🔗 BuiltByBit
+                    </a>
+                </div>
+                <footer>
+                    <p>&copy; <span id="current-year">2025</span> GauravBuilds. All rights reserved.</p>
+                </footer>
+            </div>
+        </section>
+    </main>
+
+    <!-- Lightbox Modal -->
+    <div id="lightbox-overlay" class="lightbox-overlay" onclick="closeLightbox()">
+        <div class="lightbox-content" onclick="event.stopPropagation()">
+            <button class="lightbox-close" onclick="closeLightbox()">&times;</button>
+            <img id="lightbox-image" class="lightbox-image" src="" alt="Project Image">
+            <h3 id="lightbox-title" class="lightbox-title neon-text-primary"></h3>
+            <div id="lightbox-tags" class="lightbox-tags tags-container"></div>
+            <p id="lightbox-description" class="lightbox-description"></p>
+        </div>
+    </div>
+
+    <script>
+        // Lightbox functionality
+        function openLightbox(imageSrc, title, description, tags) {
+            const lightbox = document.getElementById('lightbox-overlay');
+            const lightboxImage = document.getElementById('lightbox-image');
+            const lightboxTitle = document.getElementById('lightbox-title');
+            const lightboxDescription = document.getElementById('lightbox-description');
+            const lightboxTags = document.getElementById('lightbox-tags');
+
+            lightboxImage.src = imageSrc;
+            lightboxTitle.textContent = title;
+            lightboxDescription.textContent = description;
+            
+            // Clear and populate tags
+            lightboxTags.innerHTML = '';
+            tags.forEach(tag => {
+                const tagElement = document.createElement('span');
+                tagElement.className = 'tag';
+                tagElement.textContent = tag;
+                lightboxTags.appendChild(tagElement);
+            });
+
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            const lightbox = document.getElementById('lightbox-overlay');
+            lightbox.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close lightbox on Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeLightbox();
+            }
+        });
+
+        // Smooth scrolling for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Navigation active state
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('.section');
+            const navLinks = document.querySelectorAll('nav a');
+            
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 100;
+                if (scrollY >= sectionTop) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // Animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animationPlayState = 'running';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in, .slide-in-up').forEach(el => {
+            el.style.animationPlayState = 'paused';
+            observer.observe(el);
+        });
+
+        // Set current year
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>
