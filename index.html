@@ -34,7 +34,6 @@
             overflow-x: hidden;
         }
 
-         /* Animated Water-Themed Background */
          .particles-bg {
              position: fixed;
              top: 0;
@@ -94,8 +93,7 @@
             position: relative;
         }
 
-        nav a:hover,
-        nav a.active {
+        nav a:hover, nav a.active {
             color: var(--primary-color);
             text-shadow: var(--neon-glow);
         }
@@ -111,15 +109,11 @@
             transition: width 0.3s ease;
         }
 
-        nav a:hover::after {
-            width: 100%;
-        }
+        nav a:hover::after { width: 100%; }
 
         .neon-text-primary {
             color: var(--primary-color);
-            text-shadow: 
-                0 0 3px var(--primary-color),
-                0 0 6px var(--primary-color);
+            text-shadow: 0 0 3px var(--primary-color), 0 0 6px var(--primary-color);
             animation: flicker 4s infinite alternate;
         }
 
@@ -143,9 +137,7 @@
             margin: 0 auto;
         }
 
-        #hero {
-            text-align: center;
-        }
+        #hero { text-align: center; }
 
         #hero h1 {
             font-family: 'Silkscreen', monospace;
@@ -205,10 +197,8 @@
         }
 
         .service-card {
-            background: linear-gradient(135deg, rgba(255, 107, 53, 0.1), rgba(247, 147, 30, 0.05));
-            border: none;
+            background: linear-gradient(135deg, rgba(30, 144, 255, 0.1), rgba(0, 191, 255, 0.05));
             border-left: 4px solid var(--primary-color);
-            border-radius: 0;
             padding: 2rem;
             text-align: left;
             transition: all 0.3s ease;
@@ -217,25 +207,9 @@
             backdrop-filter: blur(5px);
         }
 
-        .service-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 107, 53, 0.15), transparent);
-            transition: left 0.6s ease;
-        }
-
-        .service-card:hover::before {
-            left: 100%;
-        }
-
         .service-card:hover {
             transform: translateX(10px);
-            border-left-width: 6px;
-            background: linear-gradient(135deg, rgba(255, 107, 53, 0.15), rgba(247, 147, 30, 0.08));
+            background: linear-gradient(135deg, rgba(30, 144, 255, 0.15), rgba(0, 191, 255, 0.08));
         }
 
         .service-icon {
@@ -251,12 +225,6 @@
             font-family: 'Silkscreen', monospace;
         }
 
-        .service-card p {
-            color: var(--text-muted);
-            font-size: 0.9rem;
-            line-height: 1.6;
-        }
-
         .about-content-wrapper-grid {
             display: grid;
             grid-template-columns: 2fr 1fr;
@@ -270,9 +238,7 @@
             line-height: 1.8;
         }
 
-        .about-text-column strong {
-            color: var(--primary-color);
-        }
+        .about-text-column strong { color: var(--primary-color); }
 
         .stats-container {
             display: grid;
@@ -294,16 +260,6 @@
             box-shadow: var(--neon-glow);
         }
 
-        .stat-box h4 {
-            font-size: 2rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .stat-box p {
-            color: var(--text-muted);
-            font-size: 0.9rem;
-        }
-
         .portfolio-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
@@ -314,22 +270,18 @@
         .project-card {
             background: transparent;
             border: none;
-            border-radius: 0;
-            overflow: hidden;
             transition: all 0.4s ease;
             position: relative;
         }
 
-        .project-card:hover {
-            transform: scale(1.02);
-        }
+        .project-card:hover { transform: scale(1.02); }
 
         .project-image-wrapper {
             height: 250px;
-            background: linear-gradient(135deg, rgba(10, 10, 10, 0.9), rgba(255, 107, 53, 0.1));
+            background: linear-gradient(135deg, rgba(10, 10, 10, 0.9), rgba(30, 144, 255, 0.1));
             position: relative;
             overflow: hidden;
-            border: 1px solid rgba(255, 107, 53, 0.3);
+            border: 1px solid rgba(30, 144, 255, 0.3);
             cursor: pointer;
         }
 
@@ -340,10 +292,6 @@
             transition: transform 0.3s ease;
         }
 
-        .project-card:hover .project-image-wrapper img {
-            transform: scale(1.05);
-        }
-
         .project-filename {
             position: absolute;
             top: 10px;
@@ -351,56 +299,8 @@
             background: rgba(0, 0, 0, 0.8);
             color: var(--primary-color);
             padding: 0.5rem 1rem;
-            font-family: 'Share Tech Mono', monospace;
             font-size: 0.8rem;
-            border: 1px solid rgba(255, 107, 53, 0.5);
-        }
-
-        .project-image-wrapper::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: repeating-linear-gradient(
-                90deg,
-                transparent,
-                transparent 2px,
-                rgba(255, 107, 53, 0.1) 2px,
-                rgba(255, 107, 53, 0.1) 4px
-            );
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .project-card:hover .project-image-wrapper::before {
-            opacity: 1;
-        }
-
-        .project-image-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.8);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            font-size: 2rem;
-            color: var(--secondary-color);
-        }
-
-        .project-image-overlay::before {
-            content: '⚡';
-            font-size: 3rem;
-        }
-
-        .project-card:hover .project-image-overlay {
-            opacity: 1;
+            border: 1px solid rgba(30, 144, 255, 0.5);
         }
 
         .project-content {
@@ -427,13 +327,9 @@
             background: transparent;
             color: var(--text-muted);
             padding: 0.4rem 0;
-            border-radius: 0;
             font-size: 0.85rem;
-            border: none;
-            border-bottom: 1px solid rgba(255, 107, 53, 0.4);
-            font-family: 'Share Tech Mono', monospace;
+            border-bottom: 1px solid rgba(30, 144, 255, 0.4);
             text-transform: uppercase;
-            letter-spacing: 1px;
         }
 
         .tag:hover {
@@ -448,43 +344,22 @@
         }
 
         .btn-gallery {
-            background: linear-gradient(45deg, rgba(255, 107, 53, 0.2), rgba(247, 147, 30, 0.2));
+            background: linear-gradient(45deg, rgba(30, 144, 255, 0.2), rgba(0, 191, 255, 0.2));
             border: 2px solid var(--primary-color);
             color: var(--primary-color);
             padding: 1rem 2.5rem;
             font-size: 1.1rem;
-            margin-top: 3rem;
             transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
             text-decoration: none;
             display: inline-block;
             border-radius: 25px;
-            font-family: 'Share Tech Mono', monospace;
             text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .btn-gallery::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 107, 53, 0.2), transparent);
-            transition: left 0.5s ease;
-        }
-
-        .btn-gallery:hover::before {
-            left: 100%;
         }
 
         .btn-gallery:hover {
             background: linear-gradient(45deg, var(--primary-color), var(--accent-color));
             color: white;
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(255, 107, 53, 0.3);
+            box-shadow: 0 8px 25px rgba(30, 144, 255, 0.3);
         }
 
         .faq-container {
@@ -506,8 +381,6 @@
             color: var(--primary-color);
             font-weight: bold;
             list-style: none;
-            transition: all 0.3s ease;
-            position: relative;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -516,27 +389,15 @@
         .faq-question::after {
             content: '+';
             font-size: 1.5rem;
-            color: var(--primary-color);
             transition: transform 0.3s ease;
         }
 
-        .faq-item[open] .faq-question::after {
-            transform: rotate(45deg);
-        }
-
-        .faq-question:hover {
-            background: rgba(255, 107, 53, 0.1);
-        }
+        .faq-item[open] .faq-question::after { transform: rotate(45deg); }
 
         .faq-answer {
             padding: 1.5rem;
             color: var(--text-muted);
             border-top: 1px solid var(--border-color);
-            line-height: 1.7;
-        }
-
-        .faq-answer p {
-            margin: 0;
         }
 
         .contact-buttons-container {
@@ -552,7 +413,6 @@
             align-items: center;
             gap: 0.5rem;
             padding: 1rem 2rem;
-            background: transparent;
             border: 2px solid var(--primary-color);
             color: var(--primary-color);
             text-decoration: none;
@@ -560,7 +420,6 @@
             font-weight: bold;
             transition: all 0.3s ease;
             text-transform: uppercase;
-            letter-spacing: 1px;
         }
 
         .btn:hover {
@@ -570,11 +429,6 @@
             transform: translateY(-3px);
         }
 
-        .contact-btn {
-            min-width: 200px;
-            justify-content: center;
-        }
-
         footer {
             text-align: center;
             padding: 2rem;
@@ -582,155 +436,51 @@
             border-top: 1px solid var(--border-color);
         }
 
+        /* Lightbox Modal */
         .lightbox-overlay {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(0, 0, 0, 0.95);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 2000;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s ease;
+            display: flex; align-items: center; justify-content: center;
+            z-index: 2000; opacity: 0; visibility: hidden; transition: all 0.3s ease;
         }
 
-        .lightbox-overlay.active {
-            opacity: 1;
-            visibility: visible;
-        }
+        .lightbox-overlay.active { opacity: 1; visibility: visible; }
 
         .lightbox-content {
-            max-width: 90%;
-            max-height: 90%;
+            max-width: 90%; max-height: 90%;
             background: var(--dark-bg);
             border: 2px solid var(--primary-color);
-            border-radius: 10px;
-            padding: 2rem;
-            position: relative;
-            text-align: center;
-            box-shadow: 0 0 30px rgba(255, 107, 53, 0.5);
+            border-radius: 10px; padding: 2rem; position: relative; text-align: center;
         }
 
         .lightbox-close {
-            position: absolute;
-            top: 10px;
-            right: 20px;
-            font-size: 2rem;
-            color: var(--primary-color);
-            cursor: pointer;
-            background: none;
-            border: none;
-            transition: color 0.3s ease;
-        }
-
-        .lightbox-close:hover {
-            color: var(--secondary-color);
+            position: absolute; top: 10px; right: 20px; font-size: 2rem;
+            color: var(--primary-color); cursor: pointer; background: none; border: none;
         }
 
         .lightbox-image {
-            max-width: 100%;
-            max-height: 60vh;
-            object-fit: contain;
-            border: 1px solid rgba(255, 107, 53, 0.3);
-            margin-bottom: 1.5rem;
+            max-width: 100%; max-height: 60vh; object-fit: contain; margin-bottom: 1.5rem;
         }
 
-        .lightbox-title {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            font-family: 'Silkscreen', monospace;
-        }
+        .lightbox-title { font-size: 1.5rem; margin-bottom: 1rem; font-family: 'Silkscreen', monospace; }
 
-        .lightbox-description {
-            color: var(--text-muted);
-            line-height: 1.6;
-            margin-top: 1rem;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
+        .fade-in { opacity: 0; animation: fadeIn 1s ease forwards; }
 
-        .lightbox-tags {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 0.8rem;
-            margin-bottom: 1rem;
-        }
+        .slide-in-up { opacity: 0; transform: translateY(30px); animation: slideInUp 0.8s ease forwards; }
 
-        .fade-in {
-            opacity: 0;
-            animation: fadeIn 1s ease forwards;
-        }
+        @keyframes fadeIn { to { opacity: 1; } }
 
-        .slide-in-up {
-            opacity: 0;
-            transform: translateY(30px);
-            animation: slideInUp 0.8s ease forwards;
-        }
-
-        @keyframes fadeIn {
-            to { opacity: 1; }
-        }
-
-        @keyframes slideInUp {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
+        @keyframes slideInUp { to { opacity: 1; transform: translateY(0); } }
 
         @media (max-width: 768px) {
-            nav ul {
-                flex-wrap: wrap;
-                gap: 1rem;
-            }
-
-            #hero h1 {
-                font-size: 2.5rem;
-            }
-
-            .about-content-wrapper-grid {
-                grid-template-columns: 1fr;
-                text-align: center;
-            }
-
-            .services-grid {
-                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            }
-
-            .contact-buttons-container {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .stats-container {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        @media (max-width: 480px) {
-            .section {
-                padding: 1rem;
-            }
-
-            #hero h1 {
-                font-size: 2rem;
-            }
-
-            .stats-container {
-                grid-template-columns: 1fr;
-            }
+            #hero h1 { font-size: 2.5rem; }
+            .about-content-wrapper-grid { grid-template-columns: 1fr; text-align: center; }
         }
     </style>
 </head>
 <body>
     <div class="particles-bg"></div>
-
     <header>
         <nav>
             <ul>
@@ -801,8 +551,7 @@
                 <h2 class="section-title neon-text-primary">ABOUT ME</h2>
                 <div class="about-content-wrapper-grid">
                     <div class="about-text-column">
-                        <p>Hi! I'm <strong>Gaurav</strong>, a passionate full-time Minecraft freelancer from India, with over 4 years of experience delivering high-quality solutions in the Minecraft space. I offer a range of services including <strong>Server Setups</strong>, <strong>Plugin Configurations</strong>, <strong>Java Development</strong>, <strong>Tebex Store Setup</strong>, <strong>Discord Server Setup</strong>, and more.</p>
-                        <p>Over the years, I’ve worked with clients across the globe to build everything from fast-paced minigame servers to long-term survival communities. I take pride in writing clean, reliable code and ensuring each project meets the highest standards of performance and creativity.</p>
+                        <p>Hi! I'm <strong>Gaurav</strong>, a passionate full-time Minecraft freelancer from India, with over 4 years of experience delivering high-quality solutions in the Minecraft space. I take pride in writing clean, reliable code and ensuring each project meets the highest standards of performance and creativity.</p>
                         <p>If you’re looking for a dedicated developer to help you bring your Minecraft vision to life, feel free to contact me via Discord or BuiltByBit. I’m always open to new opportunities and collaborations!</p>
                     </div>
                     <div class="about-visual-column">
@@ -833,11 +582,51 @@
             <div class="container">
                 <h2 class="section-title neon-text-primary">GALLERY</h2>
                 <div class="portfolio-grid">
+                    <div class="project-card slide-in-up">
+                        <div class="project-image-wrapper" onclick="openLightbox('images/project1.png', 'Custom Armor Model', 'Successfully integrated custom 3D models with proper texture mapping.', ['3D-Models', 'Oraxen', 'ItemsAdder'])">
+                            <img src="images/project1.png" alt="Custom Armor Model">
+                            <div class="project-filename">Models</div>
+                            <div class="project-image-overlay"></div>
+                        </div>
+                        <div class="project-content">
+                            <h3 class="neon-text-primary">Custom Armor Model</h3>
+                            <div class="tags-container">
+                                <span class="tag">3D-Models</span><span class="tag">Oraxen</span>
+                            </div>
+                        </div>
                     </div>
+                    <div class="project-card slide-in-up">
+                        <div class="project-image-wrapper" onclick="openLightbox('images/project2.png', 'OpenRP-Fork Plugin', 'Enhanced a fork of OpenRP with muffled chat and channel switching.', ['Java-Dev', 'Custom-Plugin'])">
+                            <img src="images/project2.png" alt="OpenRP-Fork">
+                            <div class="project-filename">Plugin</div>
+                            <div class="project-image-overlay"></div>
+                        </div>
+                        <div class="project-content">
+                            <h3 class="neon-text-primary">OpenRP-Fork Plugin</h3>
+                            <div class="tags-container">
+                                <span class="tag">Java-Dev</span><span class="tag">Custom-Plugin</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <div class="portfolio-footer">
-                    <a class='btn-gallery' href='Gallery.html'>
-                        🎨 Explore Full Portfolio
-                    </a>
+                    <a class='btn-gallery' href='Gallery.html'>🎨 Explore Full Portfolio</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="faq" class="section">
+            <div class="container">
+                <h2 class="section-title neon-text-primary">FAQ</h2>
+                <div class="faq-container">
+                    <details class="faq-item">
+                        <summary class="faq-question">What types of services do you offer?</summary>
+                        <div class="faq-answer"><p>Server Setups, Plugin Configurations, Tebex, Discord, Resource Packs, and more.</p></div>
+                    </details>
+                    <details class="faq-item">
+                        <summary class="faq-question">What are your prices?</summary>
+                        <div class="faq-answer"><p>My prices are negotiable and depend on the project's scope. Contact me for a quote.</p></div>
+                    </details>
                 </div>
             </div>
         </section>
@@ -846,22 +635,37 @@
             <div class="container">
                 <h2 class="section-title neon-text-primary">CONTACT ME</h2>
                 <div class="contact-buttons-container">
-                    <a href="http://discordapp.com/users/630038569490055169" target="_blank" class="btn contact-btn">
-                        💬 Private Message
-                    </a>
-                    <a href="https://discord.gg/ym4bZDsnC3" target="_blank" class="btn contact-btn">
-                        👥 Discord Server
-                    </a>
-                    <a href="https://builtbybit.com/members/Gaurav.189403/" target="_blank" class="btn contact-btn">
-                        🔗 BuiltByBit
-                    </a>
+                    <a href="http://discordapp.com/users/630038569490055169" target="_blank" class="btn">💬 Private Message</a>
+                    <a href="https://discord.gg/ym4bZDsnC3" target="_blank" class="btn">👥 Discord Server</a>
                 </div>
-                <footer>
-                    <p>&copy; <span id="current-year">2026</span> zVortexLabs. All rights reserved.</p>
-                </footer>
+                <footer><p>&copy; 2026 zVortexLabs. All rights reserved.</p></footer>
             </div>
         </section>
     </main>
 
-    </body>
+    <div id="lightbox-overlay" class="lightbox-overlay" onclick="closeLightbox()">
+        <div class="lightbox-content" onclick="event.stopPropagation()">
+            <button class="lightbox-close" onclick="closeLightbox()">&times;</button>
+            <img id="lightbox-image" class="lightbox-image" src="" alt="Project">
+            <h3 id="lightbox-title" class="lightbox-title neon-text-primary"></h3>
+            <p id="lightbox-description" class="lightbox-description" style="color: var(--text-muted);"></p>
+        </div>
+    </div>
+
+    <script>
+        function openLightbox(src, title, desc) {
+            const overlay = document.getElementById('lightbox-overlay');
+            document.getElementById('lightbox-image').src = src;
+            document.getElementById('lightbox-title').textContent = title;
+            document.getElementById('lightbox-description').textContent = desc;
+            overlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        function closeLightbox() {
+            document.getElementById('lightbox-overlay').classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+    </script>
+</body>
 </html>
