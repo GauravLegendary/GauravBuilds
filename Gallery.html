@@ -5,173 +5,59 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gallery - zVortexLabs</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Silkscreen&display=swap');
-
         :root {
             --primary-color: #00bfff;
-            --secondary-color: #1e90ff;
-            --accent-color: #20c997; 
-            --dark-bg: #020f1f;  
-            --darker-bg: #010a14;
+            --dark-bg: #020f1f;
             --text-light: #e0f7fa;
-            --text-muted: #a3cde3;  
-            --card-bg: rgba(255, 255, 255, 0.02);
+            --text-muted: #a3cde3;
             --border-color: rgba(30, 144, 255, 0.3);
-            --neon-glow: 0 0 20px var(--primary-color);
         }
-
-        body {
-            font-family: 'Share Tech Mono', monospace;
-            background: var(--dark-bg);
-            color: var(--text-light);
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
-
-         .particles-bg {
-             position: fixed;
-             top: 0;
-             left: 0;
-             width: 100%;
-             height: 100%;
+        body { font-family: 'Share Tech Mono', monospace; background: var(--dark-bg); color: var(--text-light); }
+        .particles-bg {
+             position: fixed; width: 100%; height: 100%;
              background: linear-gradient(135deg, #020f1f 0%, #012b4a 50%, #020f1f 100%);
              z-index: -2;
         }
-
-         .particles-bg::before {
-             content: '';
-             position: absolute;
-             top: 0;
-             left: 0;
-             width: 100%;
-             height: 100%;
-             background-image: 
-                 radial-gradient(circle at 20% 80%, rgba(0, 191, 255, 0.08) 0%, transparent 50%),
-                 radial-gradient(circle at 80% 20%, rgba(30, 144, 255, 0.08) 0%, transparent 50%),
-                 radial-gradient(circle at 40% 40%, rgba(32, 201, 151, 0.08) 0%, transparent 50%);
-             animation: float 25s ease-in-out infinite;
-             opacity: 0.6;
-             mix-blend-mode: screen;
-        }
-
-         @keyframes float {
-             0%, 100% { transform: translateY(0px) rotate(0deg); }
-             50% { transform: translateY(-30px) rotate(180deg); }
-        }
-
         header {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            padding: 1rem 2rem;
-            background: rgba(10, 10, 10, 0.95);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid var(--border-color);
+            position: fixed; top: 0; width: 100%; padding: 1rem 2rem;
+            background: rgba(10, 10, 10, 0.95); border-bottom: 1px solid var(--border-color);
             z-index: 1000;
         }
-
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .logo {
-            font-family: 'Silkscreen', monospace;
-            font-size: 1.5rem;
-            color: var(--primary-color);
-            text-shadow: 0 0 10px var(--primary-color);
-        }
-
+        nav { display: flex; justify-content: space-between; align-items: center; max-width: 1200px; margin: 0 auto; }
+        .logo { font-family: 'Silkscreen', monospace; font-size: 1.5rem; color: var(--primary-color); }
         .back-btn {
-            background: transparent;
-            border: 2px solid var(--primary-color);
-            color: var(--primary-color);
-            padding: 0.5rem 1.5rem;
-            text-decoration: none;
-            border-radius: 25px;
-            font-family: 'Share Tech Mono', monospace;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: all 0.3s ease;
+            border: 2px solid var(--primary-color); color: var(--primary-color);
+            padding: 0.5rem 1.5rem; text-decoration: none; border-radius: 25px;
         }
-
-        .back-btn:hover {
-            background: var(--primary-color);
-            color: white;
-            box-shadow: 0 0 20px rgba(255, 107, 53, 0.5);
-        }
-
-        main {
-            padding-top: 100px;
-            min-height: 100vh;
-        }
-
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 2rem;
-        }
-
-        .page-header {
-            text-align: center;
-            margin-bottom: 4rem;
-        }
-
-        .page-title {
-            font-family: 'Silkscreen', monospace;
-            font-size: 3rem;
-            color: var(--primary-color);
-            text-shadow: 
-                0 0 3px var(--primary-color),
-                0 0 6px var(--primary-color);
-            margin-bottom: 1rem;
-        }
-
-        .page-subtitle {
-            color: var(--text-muted);
-            font-size: 1.2rem;
-        }
-
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 3rem;
-            margin-top: 3rem;
-        }
-
-        /* Project Card and content remain exactly as in original index.html */
+        .back-btn:hover { background: var(--primary-color); color: white; }
+        main { padding-top: 100px; padding: 2rem; }
+        .page-title { text-align: center; font-family: 'Silkscreen', monospace; font-size: 3rem; color: var(--primary-color); margin: 4rem 0; }
+        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 3rem; }
+        .project-card { border-left: 3px solid var(--primary-color); padding-left: 1.5rem; margin-bottom: 2rem; }
     </style>
 </head>
 <body>
     <div class="particles-bg"></div>
-
     <header>
         <nav>
-            <div class="logo">🧪 zVortexLabs</div>
+            <div class="logo">🔥 zVortexLabs</div>
             <a class='back-btn' href='index.html'>← Back to Portfolio</a>
         </nav>
     </header>
-
     <main>
-        <div class="container">
-            <div class="page-header fade-in">
-                <h1 class="page-title">FULL GALLERY</h1>
-                <p class="page-subtitle">This page is still under development</p>
+        <h1 class="page-title">FULL GALLERY</h1>
+        <div class="gallery-grid">
+            <div class="project-card">
+                <h3>Custom Armor Model</h3>
+                <p>3D-Models • Oraxen • ItemsAdder</p>
             </div>
-
-            <div class="gallery-grid">
-                </div>
+            <div class="project-card">
+                <h3>OpenRP-Fork Plugin</h3>
+                <p>Java-Dev • Custom-Plugin • Fork-Project</p>
+            </div>
         </div>
     </main>
-
-    </body>
+</body>
 </html>
