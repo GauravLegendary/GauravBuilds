@@ -14,14 +14,14 @@
         @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Silkscreen&display=swap');
 
         :root {
-            /* Chemical Lab Theme Colors */
-            --primary-color: #39ff14;   /* Neon Green */
-            --secondary-color: #00ff41; /* Matrix Green */
-            --accent-color: #ccff00;    /* Toxic Lime */
-            --dark-bg: #050a05;         /* Very Dark Green/Black */
+            /* TOXIC LAB PALETTE */
+            --primary-color: #39ff14;
+            --secondary-color: #00ff41;
+            --accent-color: #ccff00;
+            --dark-bg: #050a05;
             --darker-bg: #020502;
             --text-light: #f0fff0;
-            --text-muted: #a3cfa3;  
+            --text-muted: #a3cfa3;
             --card-bg: rgba(0, 255, 65, 0.03);
             --border-color: rgba(57, 255, 20, 0.3);
             --neon-glow: 0 0 20px var(--primary-color);
@@ -35,15 +35,16 @@
             overflow-x: hidden;
         }
 
-        /* Animated Chemical Background */
+        /* --- CHEMICAL BUBBLES BACKGROUND --- */
         .particles-bg {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(135deg, #050a05 0%, #0a1a0a 50%, #050a05 100%);
+            background: radial-gradient(circle at 50% 130%, #0f300f 0%, #050a05 60%, #000000 100%);
             z-index: -2;
+            overflow: hidden;
         }
 
         .particles-bg::before {
@@ -54,15 +55,44 @@
             width: 100%;
             height: 100%;
             background-image: 
-                radial-gradient(circle at 20% 80%, rgba(57, 255, 20, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 80% 20%, rgba(0, 255, 65, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 40% 40%, rgba(204, 255, 0, 0.1) 0%, transparent 50%);
-            animation: float 20s ease-in-out infinite;
+                radial-gradient(circle at 15% 100%, rgba(57, 255, 20, 0.2) 2px, transparent 3px),
+                radial-gradient(circle at 35% 100%, rgba(57, 255, 20, 0.2) 3px, transparent 4px),
+                radial-gradient(circle at 60% 100%, rgba(57, 255, 20, 0.2) 2px, transparent 3px),
+                radial-gradient(circle at 85% 100%, rgba(57, 255, 20, 0.2) 4px, transparent 5px);
+            background-size: 100% 100%;
+            animation: bubbling-fast 10s linear infinite;
         }
 
-        @keyframes float {
-            0%, 100% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-20px) rotate(180deg); }
+        .particles-bg::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at 10% 100%, rgba(0, 255, 65, 0.1) 6px, transparent 7px),
+                radial-gradient(circle at 40% 100%, rgba(0, 255, 65, 0.1) 8px, transparent 9px),
+                radial-gradient(circle at 75% 100%, rgba(0, 255, 65, 0.1) 5px, transparent 6px),
+                radial-gradient(circle at 90% 100%, rgba(0, 255, 65, 0.1) 7px, transparent 8px);
+            background-size: 100% 100%;
+            animation: bubbling-slow 15s linear infinite;
+            filter: blur(2px);
+        }
+
+        @keyframes bubbling-fast {
+            0% { background-position: 0 100vh; opacity: 0; }
+            20% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { background-position: 0 -20vh; opacity: 0; }
+        }
+
+        @keyframes bubbling-slow {
+            0% { background-position: 0 100vh; opacity: 0; }
+            10% { opacity: 0; }
+            30% { opacity: 1; }
+            80% { opacity: 1; }
+            100% { background-position: 0 -30vh; opacity: 0; }
         }
 
         /* Navigation */
@@ -594,7 +624,7 @@
         <div class="lightbox-content" onclick="event.stopPropagation()">
             <button class="lightbox-close" onclick="closeLightbox()">&times;</button>
             <img id="lightbox-image" class="lightbox-image" src="" alt="Project Image">
-            <h3 id="lightbox-title" class="lightbox-title"></h3>
+            <h3 id="lightbox-title" class="lightbox-title neon-text-primary"></h3>
             <div id="lightbox-tags" class="lightbox-tags tags-container"></div>
             <p id="lightbox-description" class="lightbox-description"></p>
         </div>
